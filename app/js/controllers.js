@@ -1,22 +1,23 @@
 'use strict';
 
 /* Controllers */
+portfolio.controller('MainCtrl', ['$scope', function ($scope){
+    $scope.realisations = realisations;
 
-var phonecatControllers = angular.module('phonecatControllers', []);
+    $scope.current_realisation = 0;
+    $scope.realisation = realisations[$scope.current_realisation];
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
-  function($scope, Phone) {
-    $scope.phones = Phone.query();
-    $scope.orderProp = 'age';
-  }]);
+    $scope.experiences = experiences;
+    $scope.current_experience = 0;
+    $scope.experience = experiences[$scope.current_experience];
 
-phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
-  function($scope, $routeParams, Phone) {
-    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
-      $scope.mainImageUrl = phone.images[0];
-    });
+    $scope.openModal = function($index) {
+        $scope.realisation = realisations[$index];
+        $('#portfolioModal').modal('show');
+    };
 
-    $scope.setImage = function(imageUrl) {
-      $scope.mainImageUrl = imageUrl;
-    }
-  }]);
+    $scope.openExperience = function($index) {
+        $scope.experience = experiences[$index];
+        $('#experiences').modal('show');
+    };
+}]);
