@@ -6,6 +6,7 @@ var browserSync = require('browser-sync');
 // Server content with BrowserSync
 gulp.task('serve', ['styles', 'watch'], function () {
     browserSync({
+        open: false,
         notify: true,
         files: [
             'app/**/*.html',
