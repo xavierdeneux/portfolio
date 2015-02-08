@@ -8,13 +8,6 @@ body {
     overflow-x: hidden;
 }
 
-p {
-    font-size: 20px;
-}
-
-p.small {
-    font-size: 16px;
-}
 
 a,
 a:hover,
@@ -505,12 +498,17 @@ div.experiences .modal-content{
 }
 
 .modal-realisations .modal-dialog {
-    width: 99%;
-    margin:0.5% auto;
+    width: 95%;
+    margin:2.5% auto;
 }
 
 .modal-experiences .modal-dialog {
-    width: 50%;
+    width: 95%;
+    margin:2.5% auto;
+}
+
+.modal-dialog h2{
+    font-size: 1.5em;
 }
 
 .modal-realisations .modal-dialog h2, .modal-realisations .modal-dialog h2{
@@ -556,4 +554,20 @@ div.experiences .modal-content{
     border: solid 2px #fff;
     color: #18bc9c;
     background: #fff;
+}
+
+.container>.row{
+    margin-top:15px;
+}
+
+@media (min-width: 768px) {
+    nav>.container{
+        width:90%;
+        padding-left:0px;
+        padding-right:0px;
+    }
+
+    .container>.navbar-header>.navbar-brand{
+        font-size: 25px;
+    }
 }
