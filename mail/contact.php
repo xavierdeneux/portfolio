@@ -20,6 +20,7 @@ $message->setBody(
 );		
 
 $message->setFrom('some@address.tld');
+
 $message->setTo('x.deneux@gmail.com');
 
 //$transport = Swift_SendmailTransport::newInstance('/usr/sbin/sendmail -bs');
