@@ -1,25 +1,34 @@
 <?php
+echo '???';
+/*error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 require_once('vendors/swiftmailer/lib/swift_required.php');
 
 $postdata = file_get_contents("php://input");
 
-print_r(json_decode($postdata));
+//$postdata = json_decode($postdata));
 
+$email = $postdata['email'];
+$name = $postdata['name'];
+$content = $postdata['message'];
+$phone = $postdata['phone'];
+print_r($postdata);die();*/
+/*
 // Create the message
 $message = Swift_Message::newInstance('My subject');
 
 $message->setBody(
 '<html>' .
 ' <head></head>' .
-' <body>' .
-'  Heres comme the time' .
-'  Rest of message' .
+' <body>Phone : ' . $phone. ' - '
+$content.
 ' </body>' .
 '</html>',
   'text/html' // Mark the content-type as HTML
 );		
 
-$message->setFrom('some@address.tld');
+$message->setFrom(array($email => $name));
 
 $message->setTo('x.deneux@gmail.com');
 
@@ -30,4 +39,5 @@ $mailer = Swift_Mailer::newInstance($transport);
 
 // Send the message
 $result = $mailer->send($message);
+*/
 ?>
