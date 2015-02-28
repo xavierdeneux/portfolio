@@ -49,6 +49,8 @@ portfolio.controller('ModalInstanceCtrl', function($scope, $modalInstance, reali
 
 portfolio.controller('FormController', ['$scope', '$http',
     function($scope, $http) {
+        $scope.msgAlert = {};
+        
         $scope.sendForm = function() {
             $http.post('../mail/contact.php', {
                 email : $scope.email,
@@ -57,13 +59,17 @@ portfolio.controller('FormController', ['$scope', '$http',
                 phone : $scope.phone,
                 message : $scope.message
             }).
-            success(function(data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
+            success(function(data) {
+                $scope.msgAlert = {
+                    status : 'success',
+                    content : data
+                }
             }).
-            error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+            error(function(data) {
+                $scope.msgAlert = {
+                    status : 'error',
+                    content : data
+                }
             });
         }
     }
