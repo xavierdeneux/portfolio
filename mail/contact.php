@@ -18,16 +18,16 @@ $content = $postdata->message;
 $phone   = $postdata->phone;
 
 // Gestion des messages
-$msg['error'] = array();
+$msg['errors'] = array();
 $msg['success'] = array();
 
 // Gestion des erreurs
-if(!filter_var($email,FILTER_VALIDATE_EMAIL))) {
-   $msg['error'][] = 'Adresse e-mail invalide';
+if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
+   $msg['errors'][] = 'Adresse e-mail invalide';
 }
 
 if(!$content) {
-   $msg['error'][] = 'Merci de renseigner le contenu du message';
+   $msg['errors'][] = 'Merci de renseigner le contenu du message';
 }
 
 // Create the message

@@ -50,7 +50,7 @@ portfolio.controller('ModalInstanceCtrl', function($scope, $modalInstance, reali
 portfolio.controller('FormController', ['$scope', '$http',
     function($scope, $http) {
         $scope.msgAlert = {};
-        
+
         $scope.sendForm = function() {
             $http.post('../mail/contact.php', {
                 email : $scope.email,
@@ -62,13 +62,21 @@ portfolio.controller('FormController', ['$scope', '$http',
             success(function(data) {
                 $scope.msgAlert = {
                     status : 'success',
-                    content : data
+                    content : data.success
                 }
+                $scope.email = $scope.name = $scope.phone = $scope.message = '';
+                $scope.contact.$setPristine();
             }).
             error(function(data) {
+                var error_msg = data.errors.join('<br />');
+
+                if (!error_msg) {
+                    error_msg = 'Une erreur est survenue, merci de réesayer votre demande';
+                }
+
                 $scope.msgAlert = {
                     status : 'error',
-                    content : data
+                    content : error_msg 
                 }
             });
         }
