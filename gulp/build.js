@@ -1,10 +1,19 @@
 'use strict';
 
+/*var gulp              = require('gulp');
+var $                 = require('gulp-load-plugins')({pattern: ['gulp-*']});
+var browserSync       = require('browser-sync');
+var mainBowerFiles    = require('main-bower-files');
+var uglifySaveLicense = require('uglify-save-license');
+*/
 var gulp              = require('gulp');
 var $                 = require('gulp-load-plugins')({pattern: ['gulp-*']});
 var browserSync       = require('browser-sync');
 var mainBowerFiles    = require('main-bower-files');
 var uglifySaveLicense = require('uglify-save-license');
+var merge2            = require('merge2');
+var fs                = require('fs');
+var runSequence = require('run-sequence');
 
 var AUTOPREFIXER_BROWSERS = ['last 2 version'];
 
@@ -47,7 +56,7 @@ gulp.task('partials', function () {
         }))
         */
         .pipe($.ngHtml2js({
-            moduleName: 'ofsBoProApp',
+            moduleName: 'portfolio',
             prefix: "views/"
         }))
         .pipe(gulp.dest('.tmp/views'))
@@ -61,13 +70,13 @@ gulp.task('html', ['styles', 'partials', 'scripts'], function () {
     var htmlFilter = $.filter('*.html');
     var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
-    return gulp.src('app/*.html')
-        .pipe($.inject(gulp.src('.tmp/views/**/*.js'), {
-            read: false,
-            starttag: '<!-- inject:partials -->',
-            addRootSlash: false,
-            addPrefix: '../'
-        }))
+    gulp.src('app/*.html')
+     .pipe($.inject(gulp.src('.tmp/views/**/*.js'), {
+         read: false,
+          starttag: '<!-- inject:partials -->',
+          addRootSlash: false,
+          addPrefix: '../'
+       }))
 
         // Concatenate with useref
         .pipe(assets)
@@ -81,7 +90,7 @@ gulp.task('html', ['styles', 'partials', 'scripts'], function () {
         // Minify Styles
         .pipe(cssFilter)
         .pipe($.csso())
-        .pipe($.replace('bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap','fonts'))
+        //.pipe($.replace('bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap','fonts'))
         .pipe(cssFilter.restore())
 
         // Static asset revisioning by appending content hash to filenames
@@ -110,45 +119,46 @@ gulp.task('html', ['styles', 'partials', 'scripts'], function () {
 
 // Optimize Images
 gulp.task('images', function () {
-    return gulp.src(['app/images/**/*', '!app/images/**/*.svg'])
+    return gulp.src('app/img/**/*')
         .pipe($.cache($.imagemin({
             optimizationLevel: 3,
             progressive: true,
             interlaced: true,
             svgoPlugins: [{removeViewBox: false}],
         })))
-        .pipe(gulp.dest('dist/images'))
+        .pipe(gulp.dest('dist/img'))
         .pipe($.size({title: 'images'}));
 });
 
-
-// Copy All Files At The Root Level (app)
-// And some extra resources
-//  - html partials for directives and controllers
-//  - translations
-//  - svg files
-gulp.task('misc', function () {
-    return gulp.src(['app/*.*', '!app/*.html', 'app/translations/**.json', 'app/images/**/*.svg'], {dot: true, base: 'app'})
-        .pipe(gulp.dest('dist'))
-        .pipe($.size({title: 'copy'}));
-});
-
 // Fonts from bower dependencies if needed (gylphicons, font-awsome, ...)
+gulp.task('oldfonts', function () {
+    return gulp.src(['app/fonts/*')
+        .pipe(gulp.dest('dist/fonts'))
+        .pipe($.size({title:'fonts'}));
+});
 gulp.task('fonts', function () {
-    return gulp.src(mainBowerFiles())
-        .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
+    var files = mainBowerFiles();
+    files.push('app/fonts/*', 'app/bower_components/font-awesome/fonts/*', 'app/bower_components/bootstrap/fonts/*');
+    return gulp.src(files)
+        .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
         .pipe($.flatten())
         .pipe(gulp.dest('dist/fonts'))
         .pipe($.size());
 });
 
-// Other bower dependenciesa
-//  - select 2 icons
-gulp.task('bowerfiles', function () {
-    return gulp.src(mainBowerFiles())
-        .pipe($.filter('**select2*.{png,jpg,gif,ico,svg}'))
-        .pipe(gulp.dest('dist/styles'))
-        .pipe($.size());
+
+
+// Copy All Files At The Root Level (app)
+// And some extra resources
+//  - html partials for directives and controllers
+gulp.task('misc', function () {
+        return merge2(
+            gulp.src(['app/*.*', '!app/*.html', 'app/images/**/*.svg'], {dot: true, base: 'app'}),
+            gulp.src(['.tmp/translations/**/*'], {dot: true, base: '.tmp'})
+        )
+        .pipe(gulp.dest('dist'))
+        .pipe($.size({title: 'copy'}));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'bowerfiles', 'misc']);
+
+gulp.task('build', ['html', 'images', 'fonts', 'misc']);

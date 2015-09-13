@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal-body">
+            <a href="" ng-click="close();"><i class="fa fa-close fa-2x pull-right"></i></a>
+            <h2>» {{experience.poste}}</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div ng-repeat="image in experience.images">
+                        <img ng-src="{{image}}">
+                    </div>
+                </div>
+                <div class="col-md-8 ng-binding" ng-bind-html="experience.description"></div>
+            </div>
+            <p><button type="button" class="btn btn-default center-block" ng-click="close();"><i class="fa fa-times"></i> Fermer</button></p>
+        </div>
+    </div>
+</div>

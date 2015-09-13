@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Portfolio</h2>
+            <hr class="star-primary">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 portfolio-item ng-scope" ng-repeat="realisation in realisations">
+            <a href="" class="portfolio-link" ng-click="openRealisation($index)">
+                <div class="caption">
+                    <div class="caption-content">
+                        <i class="fa fa-search-plus fa-3x"></i>
+                    </div>
+                </div>
+                <img ng-src="{{realisation.snapshot}}" class="img-responsive" alt="">
+            </a>
+        </div>
+    </div>
+</div>

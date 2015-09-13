@@ -48,5 +48,9 @@
   },
   "scripts": {
     "test": "gulp test"
+  },
+  "dependencies": {
+    "merge2": "^0.3.6",
+    "run-sequence": "^1.1.2"
   }
 }

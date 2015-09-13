@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Contact</h2>
+            <hr class="star-primary">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" ng-controller="FormController">
+            <div class="alert" ng-class="{'alert-success': msgAlert.status == 'success', 'alert-danger' : msgAlert.status == 'error'}" ng-if="msgAlert.content" ng-bind="msgAlert.content"></div>
+            <form name="contact" id="contactForm" novalidate ng-submit="contact.$valid ? sendForm() : ''">
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Nom</label>
+                        <input type="text" name="name" class="form-control" placeholder="Nom" id="name" required="" ng-model="name" required>
+                        <p class="help-block text-danger" ng-if="contact.name.$dirty && !contact.name.$valid">Merci de renseigner votre nom</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>E-mail</label>
+                        <input type="email" name="email" class="form-control" placeholder="E-mail" id="email" required="" ng-model="email" required>
+                        <p class="help-block text-danger" ng-if="contact.email.$dirty && !contact.email.$valid">Merci de renseigner une adresse e-mail valide</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Téléphone</label>
+                        <input type="tel" name="tel" class="form-control" placeholder="Téléphone" id="phone" ng-model="phone">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Message</label>
+                        <textarea rows="5" name="message" class="form-control" placeholder="Message" id="message" required ng-model="message"></textarea>
+                        <p class="help-block text-danger" ng-if="contact.message.$dirty && !contact.message.$valid">Merci de renseigner votre message</p>
+                    </div>
+                </div>
+                <br>
+                <div id="success"></div>
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class="btn btn-success btn-md">Envoyer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -5,423 +5,89 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Xavier Deneux - Développeur web à Lyon</title>
 
-
-
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <!-- endbower -->
+    <!-- endbuild -->
 
+    <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="css/app.css">
-
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
+     <!-- endbuild -->
 </head>
 
 <body id="page-top" ng-controller="MainCtrl">
-
-    <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#page-top">Xavier Deneux</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">A propos</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#cv">CV</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Contact</a>
-                    </li>
-                    <li>
-                        <a onclick="window.open(this.href);return false;" href="http://www.ctrl-alt-geek.fr/">Blog <span class="glyphicon glyphicon-share" aria-hidden="true"></span></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
+        <div ng-include src="'views/home.html'"></div>
     </nav>
-
-    <!-- Header -->
     <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <img class="img-responsive" src="img/portfolio/profil.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">Amazing developper !</span>
-                        <hr class="star-light">
-                        <span class="skills">Web Developpeur - Photographe</span>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div ng-include src="'views/header.html'"></div>
     </header>
-
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2>Portfolio</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6 col-md-4 portfolio-item ng-scope" ng-repeat="realisation in realisations">
-                    <a href="" class="portfolio-link" ng-click="openRealisation($index)">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img ng-src="{{realisation.snapshot}}" class="img-responsive" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
+        <div ng-include src="'views/portfolio.html'"></div>
     </section>
-
     <!-- About Section -->
     <section class="success" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2>A propos</h2>
-                    <hr class="star-light">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-2">
-                    <p>Passionné du web depuis ma jeunesse, je n'ai jamais cessé de créer des sites autant pour le plaisir que pour répondre à des clients. Sans cesse à l'affût des technologies émérgentes, je ne cesse de tester et "jouer" avec les dernières technologies qui ont le vent en poupe.</p>
-                </div>
-                <div class="col-md-4">
-                    <p>Vous l'aurez compris, je suis autodidacte, même si mes nombreuses expériences, en agences web comme en SSSI, m'ont permi de m'affirmer en tant que développeur web confirmé.
-                        <br>Je suis toujours à l'écoute du marché et de challenges alléchants !</p>
-                </div>
-                <div class="col-md-8 col-md-offset-2 text-center page-scroll">
-                    <a href="#cv" class="btn btn-md btn-outline">
-                        <i class=""></i> Mon CV
-                    </a>
-                </div>
-            </div>
-        </div>
+        <div ng-include src="'views/about.html'"></div>
     </section>
-
     <!-- CV Section -->
     <section id="cv">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2>Développeur web expert</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <h3>Cursus &amp; formation</h3>
-                    <ul>
-                        <li>Titulaire d'un baccalauréat S (2006) et d'un DUT Informatique (2008)</li>
-                        <li>Formation Symfony chez SensioLabs (2014)</li>
-                        <li>Formation AngularJS chez Orsys (2015)</li>
-                        <li>Autoformation constante et veille technologique régulière.</li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h3>Expérience</h3>
-                    <ul>
-                        <li ng-repeat="experience in experiences"><a href="#" ng-click="openExperience($index);" class="portfolio-link ng-binding" data-toggle="modal">{{experience.entreprise}} <span class="glyphicon glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>Et sinon ...</h3>
-                    <p>Passionné du web, je n'en délesse pas pour autant le monde réel : j'ai pour autre passion la photographie que je pratique depuis plusieurs années, le sport (running, padel, squash, ski) et j'aime écrire.</p>
-                </div>
-            </div>
-
-            <h3>Compétences</h3>
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="skillbox">
-                        <h4>Développement</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Frameworks</h5>
-                                <ul>
-                                    <li>PHP : Symfony 2, Code Igniter</li>
-                                    <li>Javascript : jQuery, AngularJS</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>Base de données</h5>
-                                <ul>
-                                    <li>MySQL</li>
-                                    <li>Oracle</li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Environnements</h5>
-                                <ul>
-                                    <li>Windows (7, 8)</li>
-                                    <li>Linux (debian, fedora)</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>CMS</h5>
-                                <ul>
-                                    <li>Wordpress</li>
-                                    <li>Joomla</li>
-                                    <li>E-monsite.com</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="skillbox">
-                        <h4>Langages &amp; concepts</h4>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Programmation</h5>
-                                <ul>
-                                    <li>PHP5, Javascript, HTML5, CSS3</li>
-                                    <li>Schéma MVC</li>
-
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>Format de données</h5>
-                                <ul>
-                                    <li>JSON, XML</li>
-                                    <li>APIs RESTful</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Qualiy code</h5>
-                                <ul>
-                                    <li>Tests (TU, TF, TI)</li>
-                                    <li>SEO Friendly</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>Accéssibilité</h5>
-                                <ul>
-                                    <li>Normes W3C</li>
-                                    <li>Responsive design</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="skillbox">
-                        <h4>Travail en équipe</h4>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <h5>Méthodologies</h5>
-                                <ul>
-                                    <li>Agile</li>
-                                    <li>Cycles en V</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-7">
-                                <h5>Outils de versionning</h5>
-                                <ul>
-                                    <li>Git / GitHub</li>
-                                    <li>SVN</li>
-                                    <li>Microsoft TFS</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="skillbox">
-                        <h4>Solutions logicielles</h4>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <h5>IDE</h5>
-                                <ul>
-                                    <li>PHPStorm</li>
-                                    <li>Sublime Text</li>
-                                    <li>Aptana Studio (eclipse).</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h5>Bureautique</h5>
-                                <ul>
-                                    <li>Suite Microsoft Office</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-3">
-                                <h5>Créativité</h5>
-                                <ul>
-                                    <li>Suite Adobe</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div ng-include src="'views/cv.html'"></div>
     </section>
-
     <!-- Contact Section -->
     <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2>Contact</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2" ng-controller="FormController">
-                    <div class="alert" ng-class="{'alert-success': msgAlert.status == 'success', 'alert-danger' : msgAlert.status == 'error'}" ng-if="msgAlert.content" ng-bind="msgAlert.content"></div>
-                    <form name="contact" id="contactForm" novalidate ng-submit="contact.$valid ? sendForm() : ''">
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Nom</label>
-                                <input type="text" name="name" class="form-control" placeholder="Nom" id="name" required="" ng-model="name" required>
-                                <p class="help-block text-danger" ng-if="contact.name.$dirty && !contact.name.$valid">Merci de renseigner votre nom</p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>E-mail</label>
-                                <input type="email" name="email" class="form-control" placeholder="E-mail" id="email" required="" ng-model="email" required>
-                                <p class="help-block text-danger" ng-if="contact.email.$dirty && !contact.email.$valid">Merci de renseigner une adresse e-mail valide</p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Téléphone</label>
-                                <input type="tel" name="tel" class="form-control" placeholder="Téléphone" id="phone" ng-model="phone">
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Message</label>
-                                <textarea rows="5" name="message" class="form-control" placeholder="Message" id="message" required ng-model="message"></textarea>
-                                <p class="help-block text-danger" ng-if="contact.message.$dirty && !contact.message.$valid">Merci de renseigner votre message</p>
-                            </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-md">Envoyer</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <div ng-include src="'views/contact.html'"></div>
     </section>
-
     <!-- Footer -->
     <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Contact</h3>
-                        <ul>
-                            <li><i class="fa fa-fw fa-send"></i> contact@xavierdeneux.fr</li>
-                            <li><i class="fa fa-fw fa-mobile"></i> 06.32.83.87.88</li>
-                            <li><i class="fa fa-fw fa-map-marker"></i> Lyon (69) - France</li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="http://photo.xavierdeneux.fr/" class="btn-social btn-outline"><i class="fa fa-fw fa-camera"></i></a>
-                            </li>
-                            <li>
-                                <a href="http://www.twitter.com/xavierdeneux/" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="http://fr.linkedin.com/pub/xavier-deneux/37/463/ab5/" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/xavierdeneux/" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Baigne dans le web depuis 8 ans</h3>
-                        <p>Autodidacte, curieux et entrepreneur, je suis attentif aux nouvelles technologies et à tout ce qui touche de près comme de loin au grand monde du web.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">Copyright © xavierdeneux.fr - 2015</div>
-                </div>
-            </div>
-        </div>
+        <div ng-include src="'views/footer.html'"></div>
     </footer>
-
+    
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-xs visble-sm">
         <a class="btn btn-primary" href="#page-top">
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
+
+    <!-- Overlay site choice -->
+    <overlay-site-choice></overlay-site-choice>
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/ressources/experiences.js"></script>
+    <script src="scripts/ressources/realisations.js"></script>
+    <script src="scripts/app.js"></script>
+<!-- endbuild -->
+
+    <!-- build:js({.tmp}) scripts/partials.js -->
+    <!-- inject:partials -->
+    <!-- angular templates will be automaticaly converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
 </body>
 
 </html>
