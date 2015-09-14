@@ -1,0 +1,17 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^xavierdeneux.fr$
+RewriteRule ^(.*) http://www.xavierdeneux.fr/  [QSA,L,R=301]
+
+# URL V2
+RewriteRule developpeur-web-referenceur.html index.html [L,R=301]
+RewriteRule creation-sites-internet.html index.html [L,R=301]
+RewriteRule cv-developpeur-web.html index.html [L,R=301]
+RewriteRule contact-developpeur-web-amiens.html index.html [L,R=301]
+RewriteRule photographie-amiens-somme.html index.html [L,R=301]
+RewriteRule plan-de-site.html index.html [L,R=301]
+
+# Thumb
+RewriteRule medias/(.*) /image.php?src=/medias/$1 [QSA,L]
+
+
