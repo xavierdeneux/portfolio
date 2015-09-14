@@ -6,13 +6,15 @@
         </div>
     </div>
     <div class="row">
+        <p class="text-center">Vous pouvez me contacter en remplissant le formulaire ci-dessous ou en m'écrivant directement à l'adresse <a href="mailto:contact@xavierdeneux.fr">contact@xavierdeneux.fr</a></p>
         <div class="col-md-8 col-md-offset-2" ng-controller="FormController">
             <div class="alert" ng-class="{'alert-success': msgAlert.status == 'success', 'alert-danger' : msgAlert.status == 'error'}" ng-if="msgAlert.content" ng-bind="msgAlert.content"></div>
-            <form name="contact" id="contactForm" novalidate ng-submit="contact.$valid ? sendForm() : ''">
+            <div class="alert alert-info" ng-show="sendingInProgress && !msgAlert.content">Envoi en cours...</div>
+            <form ng-show="!sendingInProgress || msgAlert.status != 'success'" name="contact" id="contactForm" novalidate ng-submit="contact.$valid ? sendForm() : ''">
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         <label>Nom</label>
-                        <input type="text" name="name" class="form-control" placeholder="Nom" id="name" required="" ng-model="name" required>
+                        <input type="text" name="name" class="form-control" placeholder="Nom" id="name" ng-model="name" required>
                         <p class="help-block text-danger" ng-if="contact.name.$dirty && !contact.name.$valid">Merci de renseigner votre nom</p>
                     </div>
                 </div>

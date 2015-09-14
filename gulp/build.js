@@ -132,7 +132,7 @@ gulp.task('images', function () {
 
 // Fonts from bower dependencies if needed (gylphicons, font-awsome, ...)
 gulp.task('oldfonts', function () {
-    return gulp.src(['app/fonts/*')
+    return gulp.src(['app/fonts/*'])
         .pipe(gulp.dest('dist/fonts'))
         .pipe($.size({title:'fonts'}));
 });
@@ -146,7 +146,11 @@ gulp.task('fonts', function () {
         .pipe($.size());
 });
 
-
+gulp.task('mailFiles', function () {
+    return gulp.src(['mail/**/*'])
+        .pipe(gulp.dest('dist/mail'))
+        .pipe($.size({title:'mail'}));
+});
 
 // Copy All Files At The Root Level (app)
 // And some extra resources
@@ -156,9 +160,9 @@ gulp.task('misc', function () {
             gulp.src(['app/*.*', '!app/*.html', 'app/images/**/*.svg'], {dot: true, base: 'app'}),
             gulp.src(['.tmp/translations/**/*'], {dot: true, base: '.tmp'})
         )
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('dist/'))
         .pipe($.size({title: 'copy'}));
 });
 
 
-gulp.task('build', ['html', 'images', 'fonts', 'misc']);
+gulp.task('build', ['html', 'images', 'fonts', 'mailFiles', 'misc']);

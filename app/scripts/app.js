@@ -4,7 +4,7 @@
 var portfolio = angular.module('portfolio', ['ui.bootstrap', 'ngSanitize', 'ngCookies']);
 
 /* Controllers */
-portfolio.controller('MainCtrl', ['$scope', '$modal', function($scope, $modal) {
+portfolio.controller('MainCtrl', function($scope, $modal, realisations, experiences) {
     $scope.realisations = realisations;
     $scope.current_realisation = 0;
     $scope.realisation = realisations[$scope.current_realisation];
@@ -37,9 +37,8 @@ portfolio.controller('MainCtrl', ['$scope', '$modal', function($scope, $modal) {
                 }
             }
         });
-
     };
-}]);
+});
 
 portfolio.controller('ModalRealisationExperienceCtrl', function($scope, $modalInstance, realisation, experience) {
     $scope.realisation = realisation;
@@ -60,30 +59,33 @@ portfolio.controller('ModalOverlayCtrl', function($scope, $modalInstance, $windo
         $cookies.put('overlaySiteChoice', 'photo');
         $modalInstance.close();
         $window.open(site, '_blank');
-    }
+    };
 });
 
 portfolio.controller('FormController', ['$scope', '$http',
     function($scope, $http) {
         $scope.msgAlert = {};
+        $scope.sendingInProgress = false;
 
         $scope.sendForm = function() {
+            $scope.sendingInProgress = true;
+
             $http.post('../mail/contact.php', {
                 email: $scope.email,
                 name: $scope.name,
 
                 phone: $scope.phone,
                 message: $scope.message
-            }).
-            success(function(data) {
+            })
+            .success(function(data) {
                 $scope.msgAlert = {
                     status: 'success',
                     content: data.success
-                }
+                };
                 $scope.email = $scope.name = $scope.phone = $scope.message = '';
                 $scope.contact.$setPristine();
-            }).
-            error(function(data) {
+            })
+            .error(function(data) {
                 var error_msg = data.errors.join('<br />');
 
                 if (!error_msg) {
@@ -93,9 +95,12 @@ portfolio.controller('FormController', ['$scope', '$http',
                 $scope.msgAlert = {
                     status: 'error',
                     content: error_msg
-                }
+                };
+            })
+            .finally(function(){
+                $scope.sendingInProgress = false;
             });
-        }
+        };
     }
 ]);
 

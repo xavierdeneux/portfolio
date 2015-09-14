@@ -347,8 +347,12 @@ footer .footer-below {
 .scroll-top .btn:focus {
     outline: 0;
 }
-.portfolio-modal .modal-content {
-    padding: 100px 0;
+.modal-content{
+    border-radius: 0;
+}
+
+.portfolio-modal .modal-content, .modal-realisations .modal-content{
+    padding: 15px;
     min-height: 100%;
     border: 0;
     border-radius: 0;
