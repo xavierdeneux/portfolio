@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "merge2": "^0.3.6",
-    "run-sequence": "^1.1.2"
+    "run-sequence": "^1.1.2",
+    "karma": "^0.12.37"
   }
 }
